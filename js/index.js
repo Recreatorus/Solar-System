@@ -1,1 +1,65 @@
-document.addEventListener("DOMContentLoaded",(()=>{["css/otherstyle.css"].forEach((t=>{const e=document.createElement("link");e.rel="stylesheet",e.href=t,document.head.appendChild(e)})),setInterval((function(){var t=document.createElement("div");t.className="star",t.style.setProperty("--size",3*Math.random()+1+"vmin"),t.style.left=Math.floor(100*Math.random())+"%",t.style.top=Math.floor(100*Math.random())+"%",t.style.zIndex="-1",t.onanimationend=function(){this.remove()},document.querySelector(".star-box").appendChild(t)}),100);const t=new IntersectionObserver((t=>{t.forEach((t=>{const e=t.target.getAttribute("id");t.intersectionRatio>0?(document.querySelector(`nav li a[href="#${e}"]`).parentElement.classList.add("active"),t.target.classList.add("inView")):(document.querySelector(`nav li a[href="#${e}"]`).parentElement.classList.remove("active"),t.target.classList.remove("inView"))}))}));document.querySelectorAll("section[id]").forEach((e=>{t.observe(e)}))}));const date=document.getElementsByTagName("time"),dateTime=date[0].getAttribute("datetime"),dif=(t,e)=>Math.ceil(Math.abs(t.getTime()-e.getTime())/864e5);let outDate=dif(new Date,new Date(`${dateTime}`));const time=new Intl.RelativeTimeFormat("ru",{style:"short",numeric:"auto",localeMatcher:"best fit"});date[0].innerText=time.format("-"+(outDate-1),"day");const url="./data/solar-system-planets.json";function status(t){return t.status>=200&&t.status<300?Promise.resolve(t):Promise.reject(new Error(t.statusText))}function json(t){return t.json()}function displayData(t){t.forEach((t=>{const e=document.getElementById(`${t.name}-table`);e&&(e.innerHTML=`<table class="table">\n        <thead class="thead">\n          <tr>\n            <th colspan="2">${t.name}</th>\n            <th></th>\n          </tr>\n        </thead>\n        <tbody>\n            <tr>\n              <td>Масса (x10<sup>24</sup>кг):</td><td>${t.mass}</td>\n            </tr>\n            <tr>\n              <td>Диаметр (км):</td><td>${t.diameter}</td>\n            </tr>\n            <tr>\n              <td>Плотность (кг/м<sup>3</sup>):</td><td>${t.density}</td>\n            </tr>\n            <tr>\n              <td>Гравитация (м/с<sup>2</sup>):</td><td>${t.gravity}</td>\n            </tr>\n            <tr>\n              <td>Период вращения (часы):</td><td>${t.rotationPeriod}</td>\n            </tr>\n            <tr>\n              <td>Продолжительность дня (часы):</td><td>${t.lengthOfDay}</td>\n            </tr>\n            <tr>\n              <td>Расстояние от Солнца (10<sup>6</sup> км):</td><td>${t.distanceFromSun}</td>\n            </tr>\n            <tr>\n              <td>Перигелий (10<sup>6</sup> км):</td><td>${t.perihelion}</td>\n            </tr>\n            <tr>\n              <td>Афелий (10<sup>6</sup> км):</td><td>${t.aphelion}</td>\n            </tr>\n            <tr>\n              <td>Орбитальный период (дни/земные годы):</td><td>${t.orbitalPeriod} (${(t.orbitalPeriod/365.2).toFixed(2)})</td>\n            </tr>\n            <tr>\n              <td>Орбитальная скорость (км/с):</td><td>${t.orbitalVelocity}</td>\n            </tr>\n            <tr>\n              <td>Наклонение орбиты (градусы):</td><td>${t.orbitalInclination}°</td>\n            </tr>\n            <tr>\n              <td>Орбитальный эксцентриситет:</td><td>${t.orbitalEccentricity}</td>\n            </tr>\n            <tr>\n              <td>Наклон к орбите (градусы):</td><td>${t.obliquityToOrbit}°</td>\n            </tr>\n            <tr>\n              <td>Средняя температура (градусы):</td><td>${t.meanTemperature}°C</td>\n            </tr>\n            <tr>\n              <td>Атмосферное давление:</td><td>${t.surfacePressure}</td>\n            </tr>\n            <tr>\n              <td>Количество лун:</td><td>${t.numberOfMoons}</td>\n            </tr>\n            <tr>\n              <td>Атмосфера:</td><td>${t.atmosphere}</td>\n            </tr>\n          </tbody>\n        </table>\n      `)}))}fetch(url).then(json).then((function(t){displayData(t)})).catch((function(t){console.log("%c Ошибка:  "+t+" ","background-color: #f00; color: #fff",t)}));var body=document.getElementsByTagName("body"),radios=document.getElementsByName("themes");for(i=0;i<radios.length;i++)radios[i].addEventListener("change",(function(){body[0].classList.remove(body[0].classList.item(0)),body[0].classList.add(this.id)}));const hamburger=document.querySelector(".hamburger"),menu=document.querySelector(".section-nav");hamburger.addEventListener("click",(()=>{hamburger.classList.toggle("active"),menu.classList.toggle("menuOpen")})),document.querySelectorAll("nav li a").forEach((function(t){t.addEventListener("click",(function(){hamburger.classList.contains("active")&&(hamburger.classList.remove("active"),menu.classList.remove("menuOpen"))}))})),document.addEventListener("click",(t=>{let e=t.target,n=e==menu||menu.contains(e),a=e==document.querySelector(".hamburger"),r=menu.classList.contains("menuOpen");n||a||!r||(menu.classList.remove("menuOpen"),hamburger.classList.remove("active"))}));var menuLink=document.querySelectorAll("nav li a");menuLink.forEach((t=>{t.addEventListener("click",(()=>{setTimeout((()=>{history.replaceState("",document.title,window.location.origin+window.location.pathname)}),5)}))})),document.querySelectorAll(".blaze-slider").forEach((t=>{new BlazeSlider(t,{all:{enableAutoplay:!1,autoplayInterval:2e3,transitionDuration:300,slidesToShow:1,slidesToScroll:1}})}));const mediaQuery=window.matchMedia("screen and (min-width: 991px)");function handleTabletChange(t){t.matches&&mediumZoom("[data-zoomable]",{margin:0,scrollOffset:0,background:"#212530"})}mediaQuery.addEventListener(handleTabletChange,{once:!0}),handleTabletChange(mediaQuery);
+document.addEventListener('DOMContentLoaded',()=>{for(const a of a){const a=document.createElement('link');a.rel='stylesheet';a.href=a;document.head.appendChild(a)}function c(){var s=document.createElement('div');s.className='star';s.style.setProperty('--size',Math.random()*3+1+'vmin');s.style.left=Math.floor(Math.random()*100)+'%';s.style.top=Math.floor(Math.random()*100)+'%';s.style.zIndex='-1';s.onanimationend=function(){this.remove()};document.querySelector('.star-box').appendChild(s)}setInterval(c,100);const d=new IntersectionObserver((c)=>{for(const c of c){const c=c.target.getAttribute('id');c.intersectionRatio>0?(document.querySelector(`nav li a[href="#${c}"]`).parentElement.classList.add('active'),c.target.classList.add('inView')):(document.querySelector(`nav li a[href="#${c}"]`).parentElement.classList.remove('active'),c.target.classList.remove('inView'))}});for(const a of document.querySelectorAll('section[id]'))d.observe(a)});const a=document.getElementsByTagName('time'),c=a[0].getAttribute('datetime');const d=(d1,d2)=>Math.ceil(Math.abs(d1.getTime()-d2.getTime())/86400000);let e=d(new Date(),new Date(`${c}`));const f=new Intl.RelativeTimeFormat('ru', {style:'short',numeric:'auto',localeMatcher:'best fit'});a[0].innerText=f.format(`-${e-1}`,'day');const g='./data/solar-system-planets.json';function h(a){return a.json()}fetch(g).then(h).then((data)=>i(data)).catch((error)=>console.log('%c Ошибка: '+' '+error+' ','background-color: #f00; color: #fff',error));function i(a){for(const i of a){const a=document.getElementById(`${i.name}-table`);a&&(a.innerHTML=`<table class="table">
+        <thead class="thead">
+          <tr>
+            <th colspan="2">${i.name}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>Масса (x10<sup>24</sup>кг):</td><td>${i.mass}</td>
+            </tr>
+            <tr>
+              <td>Диаметр (км):</td><td>${i.diameter}</td>
+            </tr>
+            <tr>
+              <td>Плотность (кг/м<sup>3</sup>):</td><td>${i.density}</td>
+            </tr>
+            <tr>
+              <td>Гравитация (м/с<sup>2</sup>):</td><td>${i.gravity}</td>
+            </tr>
+            <tr>
+              <td>Период вращения (часы):</td><td>${i.rotationPeriod}</td>
+            </tr>
+            <tr>
+              <td>Продолжительность дня (часы):</td><td>${i.lengthOfDay}</td>
+            </tr>
+            <tr>
+              <td>Расстояние от Солнца (10<sup>6</sup> км):</td><td>${i.distanceFromSun}</td>
+            </tr>
+            <tr>
+              <td>Перигелий (10<sup>6</sup> км):</td><td>${i.perihelion}</td>
+            </tr>
+            <tr>
+              <td>Афелий (10<sup>6</sup> км):</td><td>${i.aphelion}</td>
+            </tr>
+            <tr>
+              <td>Орбитальный период (дни/земные годы):</td><td>${i.orbitalPeriod} (${(i.orbitalPeriod/365.2).toFixed(2)})</td>
+            </tr>
+            <tr>
+              <td>Орбитальная скорость (км/с):</td><td>${i.orbitalVelocity}</td>
+            </tr>
+            <tr>
+              <td>Наклонение орбиты (градусы):</td><td>${i.orbitalInclination}°</td>
+            </tr>
+            <tr>
+              <td>Орбитальный эксцентриситет:</td><td>${i.orbitalEccentricity}</td>
+            </tr>
+            <tr>
+              <td>Наклон к орбите (градусы):</td><td>${i.obliquityToOrbit}°</td>
+            </tr>
+            <tr>
+              <td>Средняя температура (градусы):</td><td>${i.meanTemperature}°C</td>
+            </tr>
+            <tr>
+              <td>Атмосферное давление:</td><td>${i.surfacePressure}</td>
+            </tr>
+            <tr>
+              <td>Количество лун:</td><td>${i.numberOfMoons}</td>
+            </tr>
+            <tr>
+              <td>Атмосфера:</td><td>${i.atmosphere}</td>
+            </tr>
+          </tbody>
+        </table>
+      `)}}var j=document.getElementsByTagName('body'),k=document.getElementsByName('themes');for(i=0;i<k.length;i++)k[i].addEventListener('change',function(){j[0].classList.remove(j[0].classList.item(0));j[0].classList.add(this.id)});const l=document.querySelector('.hamburger'),m=document.querySelector('.section-nav');l.addEventListener('click',()=>{l.classList.toggle('active');m.classList.toggle('menuOpen')});document.querySelectorAll('nav li a').forEach((e)=>e.addEventListener('click',function(){l.classList.contains('active')&&(l.classList.remove('active'),m.classList.remove('menuOpen'))}));document.addEventListener('click',(e)=>{let a=e.target;let c=a===m||m.contains(a);let d=a===document.querySelector('.hamburger');let _temp=m.classList.contains('menuOpen');!c&&!d&&_temp&&(m.classList.remove('menuOpen'),l.classList.remove('active'))});var n=document.querySelectorAll('nav li a');for(const c of n){c.addEventListener('click',()=>setTimeout(()=>c(),5));function c(){history.replaceState('',document.title,window.location.origin+window.location.pathname)}}for(const c of document.querySelectorAll('.blaze-slider'))new BlazeSlider(c, {all:{enableAutoplay:!1,autoplayInterval:2000,transitionDuration:300,slidesToShow:1,slidesToScroll:1}});const o=window.matchMedia('screen and (min-width: 991px)');function p(e){e.matches&&mediumZoom('[data-zoomable]',{margin:0,scrollOffset:0,background:'#212530'})}o.addEventListener(p,{once:!0});p(o);
